@@ -21,14 +21,16 @@ public class Q14_ATM_Withdrawal {
 				debitedAmount = sc.nextInt();
 
 				if (debitedAmount % 100 == 0) {
-					int result = CreditedAmount - debitedAmount;
+					CreditedAmount -= debitedAmount;
 
-					if (result <= 0) {
-						System.err.println("Insufficient balance..!");
+					if (CreditedAmount < debitedAmount) {
+						System.err.println("Insufficient balance.!");
 					} else {
 						System.out.println("Transaction completed...!");
-						System.out.println("Your available balance: " + result);
-						continue;
+						System.out.println("Your available balance: " + CreditedAmount);
+						if(CreditedAmount == 0) {
+							System.err.println("Your balance is 0...");
+						};
 					}
 				} else if (debitedAmount % 100 != 0) {
 					System.err.println("You are not putting required format amount..!");
@@ -44,8 +46,9 @@ public class Q14_ATM_Withdrawal {
 			}
 			if (CreditedAmount <= 0) {
 				System.err.println("Insufficient balance..!");
+				continue;
 			}
 		}
-		System.out.println("Insufficient Balance...!");
+		System.err.println("Insufficient Balance...!");
 	}
 }
